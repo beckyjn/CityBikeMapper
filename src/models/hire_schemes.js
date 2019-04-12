@@ -18,7 +18,7 @@ HireSchemes.prototype.getData = function () {
   };
 
 HireSchemes.prototype.getCountryData = function () {
-  const countriesUrl = `https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;demonym;nativeName`
+  const countriesUrl = `https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;demonym;nativeName;subregion;region`
   const countryRequestHelper = new RequestHelper(countriesUrl);
   countryRequestHelper.get()
     .then((countryData) => {
