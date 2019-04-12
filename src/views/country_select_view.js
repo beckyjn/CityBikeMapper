@@ -5,6 +5,7 @@ const CountrySelectView = function(container){
   this.allCountryData = null
   this.container = container
   this.countryNames = null
+  this.everyCountryName = null
 };
 
 CountrySelectView.prototype.bindEvents = function () {
@@ -12,31 +13,35 @@ CountrySelectView.prototype.bindEvents = function () {
     this.allCountryData = evt.detail;
     this.populateCountryList(this.container);
   });
-
   PubSub.subscribe('HireSchemes:all-bike-network-data-ready', (evt) => {
     const networkObjects = evt.detail;
     this.allNetworkData = networkObjects.networks;
   });
-
-  PubSub.publish('CountrySelectView:country-selected', event.target.value)
 };
 
 CountrySelectView.prototype.populateCountryList = function(container){
   const countryNames = this.populateCountryNames();
-  let dropdown = container
+  this.everyCountryName = countryNames
+  let dropdown = container;
+
 
   dropdown.addEventListener('change', (event)=>{
-    PubSub.publish('SelectView:country-selected', event.target.value);
+    const selectedCountryName = event.target.value;
+    const selectedCountryCode = this.codeFinder(selectedCountryName);
+    const selectedCountry = this.selectedCountryData(selectedCountryCode);
+    PubSub.publish('SelectView:country-selected', selectedCountry);
   });
+
   dropdown = countryNames.forEach((countryName)=>{
-        dropdown.appendChild(this.createOption(countryName))
+    dropdown.appendChild(this.createOption(countryName))
   });
+
 };
 
-CountrySelectView.prototype.createOption = function(countryName){
+CountrySelectView.prototype.createOption = function(countryName, index){
   const option = document.createElement('option')
   option.textContent = countryName;
-  option.id = countryName;
+  option.id = this.everyCountryName.indexOf(countryName);
   return option;
 };
 
@@ -47,7 +52,7 @@ CountrySelectView.prototype.populateCountryNames = function () {
     countryName = this.nameConverter(countryCode);
     countryNames.push(countryName);
   });
-  return countryNames
+  return countryNames;
 };
 
 CountrySelectView.prototype.getCountryCodes = function(){
@@ -58,7 +63,7 @@ CountrySelectView.prototype.getCountryCodes = function(){
   countryCodes = everyCountryCode.filter((countryCode, index, array) => {
       return array.indexOf(countryCode) === index;
     });
-    return countryCodes;
+  return countryCodes;
   };
 
 CountrySelectView.prototype.nameConverter = function(countryCode){
@@ -73,12 +78,22 @@ CountrySelectView.prototype.nameConverter = function(countryCode){
 
 CountrySelectView.prototype.codeFinder = function(countryName){
   let countryCode = "";
-  const countryNameThing = this.allCountryData.forEach((country) => {
+  this.allCountryData.forEach((country) => {
     if (country.name === countryName){
      countryCode = country.alpha2Code;
     };
   });
   return countryCode;
+};
+
+CountrySelectView.prototype.selectedCountryData = function (selectedCountry) {
+const networkData = [];
+const networkCountry = this.allNetworkData.forEach((network) => {
+    if(network.location.country === selectedCountry){
+      networkData.push(network);
+    };
+  });
+return networkData;
 };
 
 module.exports = CountrySelectView;

@@ -23,10 +23,26 @@ HireSchemes.prototype.getCountryData = function () {
   countryRequestHelper.get()
     .then((countryData) => {
       this.allCountryData = countryData;
-      // console.log(this.allCountryData);
       PubSub.publish('HireSchemes:all-country-data-ready', this.allCountryData)
     })
     .catch((error) => {`Unable to find name for ${countryCode}`});
 };
+
+HireSchemes.prototype.bindEvents = function (){
+  let countryCode = ""
+  PubSub.subscribe('SelectView:country-selected', (evt) => {
+   countryCode = evt.detail;
+    if (countryCode !== ""){
+      this.filterCitiesByCountry(countryCode);
+    };
+  });
+};
+
+HireSchemes.prototype.filterCitiesByCountry = function(countryCode){
+  console.log(countryCode);
+  console.log(this.allNetworkData.networks[0].location.city);
+  console.log(this.allNetworkData.networks[0].location.country);
+};
+
 
 module.exports = HireSchemes;
