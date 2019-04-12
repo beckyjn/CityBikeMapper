@@ -13,7 +13,7 @@ CityListView.prototype.bindEvents = function () {
     // console.log(this.allNetworkData);
   });
   PubSub.subscribe('HireSchemes:selected-hire-schemes-ready', (evt) => {
-    // console.log(evt.detail);
+    console.log(evt.detail);
   });
 };
 

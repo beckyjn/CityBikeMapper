@@ -29,19 +29,13 @@ HireSchemes.prototype.getCountryData = function () {
 };
 
 HireSchemes.prototype.bindEvents = function (){
-  let countryCode = ""
+  let countryData = [];
   PubSub.subscribe('SelectView:country-selected', (evt) => {
-   countryCode = evt.detail;
-    if (countryCode !== ""){
-      this.filterCitiesByCountry(countryCode);
+   countryData = evt.detail;
+    if (countryData !== []){
+      PubSub.publish('HireSchemes:selected-hire-schemes-ready', countryData);
     };
   });
-};
-
-HireSchemes.prototype.filterCitiesByCountry = function(countryCode){
-  console.log(countryCode);
-  console.log(this.allNetworkData.networks[0].location.city);
-  console.log(this.allNetworkData.networks[0].location.country);
 };
 
 
