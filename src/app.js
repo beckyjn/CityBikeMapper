@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const citiesListView = new CityListView(citiesListViewContainer);
   citiesListView.bindEvents();
 
+  const cityDetailedViewContainer = document.querySelector('.city-detail');
+  const cityDetailView = new CityDetailedView(cityDetailedViewContainer)
+  cityDetailView.bindEvents();
+
   const hireScheme = new HireScheme();
   hireScheme.getData();
   hireScheme.bindEvents();

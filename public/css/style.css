@@ -4,10 +4,15 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
-.cities-list {
+.data-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: auto;
+  justify-items: center;
+}
+
+.cities-list {
+  grid-column: 1
   justify-items: center;
 }
 
@@ -15,12 +20,31 @@ body {
   border: 1px solid #D0CDD7;
   list-style: none;
   padding: 1em;
-  min-width: 250px;
-  width: 40vw;
+  min-width: 100px;
+  width: 25vw;
   text-align: center;
+}
+
+.city-overview {
+  font-size: 0.8em;
+  font-style: italic;
 }
 
 .city-overview a{
   color: #416165;
   font-weight: bold;
+  font-style: normal;
+  font-size: 1.15em;
+}
+
+.city-detail {
+  grid-column: 2;
+  grid-row: auto;
+  justify-items: center;
+}
+
+.city-info {
+  border: 1px solid #D0CDD7;
+  width: 65vw;
+  text-align: center;
 }

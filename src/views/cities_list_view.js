@@ -30,15 +30,22 @@ CityListView.prototype.publishCityInfo = function () {
     this.container.appendChild(listContainer);
 
     listName = document.createElement('li');
-    listName.innerHTML = `<a> City Name: ${city.location.city} </a>`;
+    cityName = city.location.city
+    listName.innerHTML = `<a>${cityName}</a>`;
+    listName.addEventListener('click', this.citySelectedHandler);
     listContainer.appendChild(listName);
 
     listHireCompany = document.createElement('li');
-    listHireCompany.textContent = `You can rent bikes here from ${city.name}`;
+    listHireCompany.textContent = `(${city.name})`;
     listContainer.appendChild(listHireCompany);
   });
 };
 
+CityListView.prototype.citySelectedHandler = function () {
+  selectedCityName = event.target.textContent;
+  console.log(`city has been selected ${selectedCityName}`);
+  PubSub.publish('CitiesList:city-has-been-selected', selectedCityName);
+};
 
 
 module.exports = CityListView;

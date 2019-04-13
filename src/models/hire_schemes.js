@@ -17,6 +17,7 @@ HireSchemes.prototype.getData = function () {
     .then(this.getCountryData);
   };
 
+// need country data to display country names, as citybikes api only provides an alpha code
 HireSchemes.prototype.getCountryData = function () {
   const countriesUrl = `https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;demonym;nativeName;subregion;region`
   const countryRequestHelper = new RequestHelper(countriesUrl);
@@ -30,17 +31,33 @@ HireSchemes.prototype.getCountryData = function () {
 
 HireSchemes.prototype.bindEvents = function (){
   let countryData = [];
+  //handles data when a country has been selected - returns all city hire schemes in selected country
   PubSub.subscribe('SelectView:country-selected', (evt) => {
    const selectedCountryName = evt.detail;
    const selectedCountryCode = this.codeFinder(selectedCountryName);
    const countryData = this.selectedCountryData(selectedCountryCode);
    if (countryData !== []){
-      console.log(countryData);
       PubSub.publish('HireSchemes:selected-hire-schemes-ready', countryData);
+    };
+  });
+
+  //handles data when a city has been selected
+  PubSub.subscribe('CitiesList:city-has-been-selected', evt => {
+    cityDetailUrl = "";
+    const selectedCityName = evt.detail;
+    const selectedCityDetails = this.findHref(selectedCityName)
+    cityDetailUrl = `http://api.citybik.es${selectedCityDetails}`
+    if (cityDetailUrl !== ""){
+      const cityRequestHelper = new RequestHelper(cityDetailUrl);
+      cityRequestHelper.get()
+      .then((allCityData) => {
+        PubSub.publish('HireSchemes:selected-city-info-ready', allCityData)
+      });
     };
   });
 };
 
+//uses country name to find alpha2code, which the two datasets have in common
 HireSchemes.prototype.codeFinder = function(countryName){
   let countryCode = "";
   allCountryData.forEach((country) => {
@@ -51,15 +68,27 @@ HireSchemes.prototype.codeFinder = function(countryName){
   return countryCode;
 };
 
-HireSchemes.prototype.selectedCountryData = function (selectedCountry) {
-const networkData = [];
-const networkCountry = this.allNetworkData.networks.forEach((network) => {
-    if(network.location.country === selectedCountry){
-      networkData.push(network);
-    };
-  });
-return networkData;
+// uses alpha2 code to return matching citybike schemes from the citybike api
+HireSchemes.prototype.selectedCountryData = function (selectedCountryCode) {
+  const networkData = [];
+  const networkCountry = this.allNetworkData.networks.forEach((network) => {
+      if(network.location.country === selectedCountryCode){
+        networkData.push(network);
+      };
+    });
+  return networkData;
 };
 
+// searches api for matching city and returns link to the api for the cities detailed information
+HireSchemes.prototype.findHref = function (cityName) {
+  let cityHref = "";
+  const banana = this.allNetworkData.networks.forEach((network) => {
+    if(network.location.city === cityName){
+      cityHref = network.href
+      };
+    });
+  return cityHref
+
+};
 
 module.exports = HireSchemes;
