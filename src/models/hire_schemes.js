@@ -31,12 +31,34 @@ HireSchemes.prototype.getCountryData = function () {
 HireSchemes.prototype.bindEvents = function (){
   let countryData = [];
   PubSub.subscribe('SelectView:country-selected', (evt) => {
-   countryData = evt.detail;
-    if (countryData !== []){
+   const selectedCountryName = evt.detail;
+   const selectedCountryCode = this.codeFinder(selectedCountryName);
+   const countryData = this.selectedCountryData(selectedCountryCode);
+   if (countryData !== []){
       console.log(countryData);
       PubSub.publish('HireSchemes:selected-hire-schemes-ready', countryData);
     };
   });
+};
+
+HireSchemes.prototype.codeFinder = function(countryName){
+  let countryCode = "";
+  allCountryData.forEach((country) => {
+    if (country.name === countryName){
+     countryCode = country.alpha2Code;
+    };
+  });
+  return countryCode;
+};
+
+HireSchemes.prototype.selectedCountryData = function (selectedCountry) {
+const networkData = [];
+const networkCountry = this.allNetworkData.networks.forEach((network) => {
+    if(network.location.country === selectedCountry){
+      networkData.push(network);
+    };
+  });
+return networkData;
 };
 
 

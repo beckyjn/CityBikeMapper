@@ -21,32 +21,22 @@ CountrySelectView.prototype.bindEvents = function () {
 
 CountrySelectView.prototype.populateCountryList = function(container){
   const countryNames = this.populateCountryNames();
-  this.everyCountryName = countryNames
+  this.everyCountryName = countryNames.sort();
   let dropdown = container;
-
 
   dropdown.addEventListener('change', (event)=>{
     const selectedCountryName = event.target.value;
-    const selectedCountryCode = this.codeFinder(selectedCountryName);
-    const selectedCountry = this.selectedCountryData(selectedCountryCode);
-    PubSub.publish('SelectView:country-selected', selectedCountry);
+    PubSub.publish('SelectView:country-selected', selectedCountryName);
   });
 
   dropdown = countryNames.forEach((countryName)=>{
     dropdown.appendChild(this.createOption(countryName))
   });
-
-};
-
-CountrySelectView.prototype.createOption = function(countryName, index){
-  const option = document.createElement('option')
-  option.textContent = countryName;
-  option.id = this.everyCountryName.indexOf(countryName);
-  return option;
 };
 
 CountrySelectView.prototype.populateCountryNames = function () {
   const countryCodes = this.getCountryCodes();
+
   const countryNames = [];
   this.countryNames = countryCodes.forEach((countryCode) => {
     countryName = this.nameConverter(countryCode);
@@ -63,13 +53,14 @@ CountrySelectView.prototype.getCountryCodes = function(){
       network["location"]["country"] = "GB";
     }
     everyCountryCode.push(network["location"]["country"]);
-
   });
+
+  // makes list of unique country codes
   countryCodes = everyCountryCode.filter((countryCode, index, array) => {
       return array.indexOf(countryCode) === index;
     });
   return countryCodes;
-  };
+};
 
 CountrySelectView.prototype.nameConverter = function(countryCode){
   let countryName = "";
@@ -81,24 +72,11 @@ CountrySelectView.prototype.nameConverter = function(countryCode){
   return countryName;
 };
 
-CountrySelectView.prototype.codeFinder = function(countryName){
-  let countryCode = "";
-  this.allCountryData.forEach((country) => {
-    if (country.name === countryName){
-     countryCode = country.alpha2Code;
-    };
-  });
-  return countryCode;
-};
-
-CountrySelectView.prototype.selectedCountryData = function (selectedCountry) {
-const networkData = [];
-const networkCountry = this.allNetworkData.forEach((network) => {
-    if(network.location.country === selectedCountry){
-      networkData.push(network);
-    };
-  });
-return networkData;
+CountrySelectView.prototype.createOption = function(countryName, index){
+  const option = document.createElement('option')
+  option.textContent = countryName;
+  option.id = this.everyCountryName.indexOf(countryName);
+  return option;
 };
 
 module.exports = CountrySelectView;
