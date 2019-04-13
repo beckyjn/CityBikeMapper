@@ -36,15 +36,16 @@ CityListView.prototype.publishCityInfo = function () {
     listContainer.appendChild(listName);
 
     listHireCompany = document.createElement('li');
-    listHireCompany.textContent = `(${city.name})`;
-    listContainer.appendChild(listHireCompany);
+    listHireCompany.textContent = `${city.name}`;
+    listName.appendChild(listHireCompany);
   });
 };
 
 CityListView.prototype.citySelectedHandler = function () {
-  selectedCityName = event.target.textContent;
-  console.log(`city has been selected ${selectedCityName}`);
-  PubSub.publish('CitiesList:city-has-been-selected', selectedCityName);
+  const selectedCityName = event.target.textContent;
+  const selectedScheme = event.target.nextSibling.textContent;
+  const selectionInfo = [selectedCityName, selectedScheme]
+  PubSub.publish('CitiesList:city-has-been-selected', selectionInfo);
 };
 
 

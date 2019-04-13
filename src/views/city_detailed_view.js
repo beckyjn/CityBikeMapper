@@ -22,9 +22,6 @@ CityDetailedView.prototype.displayInfo = function (container) {
   detailCityName = document.createElement('h3');
   detailCityName.textContent = `${this.allCityData.location.city}`;
 
-
-  console.log(this.allCityData);
-
   detailNumberOfStations = document.createElement('p');
   detailNumberOfStations.textContent = `${this.allCityData.name} has ${this.allCityData.stations.length} bike stations in this area.`
 
@@ -43,8 +40,6 @@ CityDetailedView.prototype.displayInfo = function (container) {
 CityDetailedView.prototype.populateMap = function () {
   const cityLat = this.allCityData.location.latitude;
   const cityLong = this.allCityData.location.longitude
-
-console.log(cityLat, cityLong);
 
   const mymap = L.map('mapid').setView([cityLat, cityLong], 13);
 
@@ -65,7 +60,6 @@ const allStations = this.allCityData.stations
 
     var marker = L.marker([stationLat, stationLong]).addTo(mymap);
     marker.bindPopup(`<b>${stationName}</b><br>${stationFreeBikes} bikes available.<br>${stationEmptySlots} empty slots.`).openPopup();
- console.log(stationName, stationFreeBikes, stationEmptySlots);
 });
 };
 

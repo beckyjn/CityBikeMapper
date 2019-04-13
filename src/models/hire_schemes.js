@@ -44,8 +44,9 @@ HireSchemes.prototype.bindEvents = function (){
   //handles data when a city has been selected
   PubSub.subscribe('CitiesList:city-has-been-selected', evt => {
     cityDetailUrl = "";
-    const selectedCityName = evt.detail;
-    const selectedCityDetails = this.findHref(selectedCityName)
+    const selectedCityName = evt.detail[0];
+    const selectedScheme = evt.detail[1];
+    const selectedCityDetails = this.findHref(selectedCityName, selectedScheme)
     cityDetailUrl = `http://api.citybik.es${selectedCityDetails}`
     if (cityDetailUrl !== ""){
       const cityRequestHelper = new RequestHelper(cityDetailUrl);
@@ -80,10 +81,10 @@ HireSchemes.prototype.selectedCountryData = function (selectedCountryCode) {
 };
 
 // searches api for matching city and returns link to the api for the cities detailed information
-HireSchemes.prototype.findHref = function (cityName) {
+HireSchemes.prototype.findHref = function (cityName, scheme) {
   let cityHref = "";
   const banana = this.allNetworkData.networks.forEach((network) => {
-    if(network.location.city === cityName){
+    if(network.location.city === cityName && network.name === scheme){
       cityHref = network.href
       };
     });

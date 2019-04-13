@@ -2,18 +2,24 @@ body {
   background-color: #F5EFED;
   color: #0F0A0A;
   font-family: Helvetica, sans-serif;
+  background-image: url(https://www.transparenttextures.com/patterns/gplay.png);
 }
 
 .data-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto;
+  grid-template-rows: 1fr 4fr;
   justify-items: center;
-  height: 70vh;
+  height: 85vh;
+}
+
+.dropdown {
+  grid-column: 1;
 }
 
 .cities-list {
 overflow: scroll;
+grid-column: 1;
 }
 
 .city-overview {
@@ -59,21 +65,30 @@ overflow: scroll;
 
 .city-detail {
   grid-column: 2;
-  grid-row: auto;
+  grid-row: 1 / span 2;
   justify-items: center;
+  padding-top: 2em;
+  text-align: center;
+  width: 65vw;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .city-info {
-
-  border-radius: 10px;
   width: 65vw;
   text-align: center;
 }
 
 #mapid {
-  height: 350px;
+  height: 60vh;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 3%;
+  margin-top: 3em;
+}
+
+select {
+  font-size: 0.9em;
+  width: 25vw;
 }
