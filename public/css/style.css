@@ -9,11 +9,11 @@ body {
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto;
   justify-items: center;
+  height: 75vh;
 }
 
 .cities-list {
-  grid-column: 1
-  justify-items: center;
+overflow: scroll;
 }
 
 .city-overview {
@@ -23,6 +23,16 @@ body {
   min-width: 100px;
   width: 25vw;
   text-align: center;
+}
+
+.city-overview:hover{
+  border: 1px solid #D0CDD7;
+  list-style: none;
+  padding: 1em;
+  min-width: 100px;
+  width: 25vw;
+  text-align: center;
+  background-color: #D0CDD7;
 }
 
 .city-overview {
@@ -35,6 +45,7 @@ body {
   font-weight: bold;
   font-style: normal;
   font-size: 1.15em;
+  cursor:pointer;
 }
 
 .city-detail {
@@ -47,4 +58,8 @@ body {
   border: 1px solid #D0CDD7;
   width: 65vw;
   text-align: center;
+}
+
+#mapid {
+  height: 375px;
 }

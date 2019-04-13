@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
+const accessToken = require('../helpers/access_token.js')
 
 const CityDetailedView = function(container){
   this.container = container;
@@ -27,12 +28,46 @@ CityDetailedView.prototype.displayInfo = function (container) {
   detailNumberOfStations = document.createElement('p');
   detailNumberOfStations.textContent = `${this.allCityData.name} has ${this.allCityData.stations.length} bike stations in this area.`
 
-  detailServiceProviders = document.createElement('p');
+  detailMap = document.createElement('div');
+  detailMap.setAttribute("id", "mapid")
 
 
   detailContainer.appendChild(detailCityName);
   detailContainer.appendChild(detailNumberOfStations);
+  detailContainer.appendChild(detailMap);
   container.appendChild(detailContainer);
+
+  detailMap = this.populateMap();
 };
+
+CityDetailedView.prototype.populateMap = function () {
+  const cityLat = this.allCityData.location.latitude;
+  const cityLong = this.allCityData.location.longitude
+
+console.log(cityLat, cityLong);
+
+  const mymap = L.map('mapid').setView([cityLat, cityLong], 13);
+
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: accessToken
+}).addTo(mymap);
+
+const allStations = this.allCityData.stations
+  allStations.forEach((station) => {
+    stationLat = station.latitude;
+    stationLong = station.longitude;
+    stationName = station.name;
+    stationFreeBikes = station.free_bikes;
+    stationEmptySlots = station.empty_slots;
+
+    var marker = L.marker([stationLat, stationLong]).addTo(mymap);
+    marker.bindPopup(`<b>${stationName}</b><br>${stationFreeBikes} bikes available.<br>${stationEmptySlots} empty slots.`).openPopup();
+ console.log(stationName, stationFreeBikes, stationEmptySlots);
+});
+};
+
 
 module.exports = CityDetailedView;
