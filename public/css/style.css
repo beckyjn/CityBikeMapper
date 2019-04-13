@@ -1,6 +1,6 @@
 body {
-  background-color: #D9DBF1;
-  color: #0B3948;
+  background-color: #F5EFED;
+  color: #0F0A0A;
   font-family: Helvetica, sans-serif;
 }
 
@@ -9,7 +9,7 @@ body {
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto;
   justify-items: center;
-  height: 75vh;
+  height: 70vh;
 }
 
 .cities-list {
@@ -17,27 +17,30 @@ overflow: scroll;
 }
 
 .city-overview {
-  border: 1px solid #D0CDD7;
+  background-color: #BDBF09;
+  border-radius: 10px;
   list-style: none;
   padding: 1em;
   min-width: 100px;
-  width: 25vw;
+  width: 20vw;
   text-align: center;
 }
 
 .city-overview:hover{
-  border: 1px solid #D0CDD7;
+  border-radius: 10px;
   list-style: none;
   padding: 1em;
   min-width: 100px;
-  width: 25vw;
+  width: 20vw;
   text-align: center;
-  background-color: #D0CDD7;
+  background-color: #2292A4;
+  transition: 0.25s;
 }
 
 .city-overview {
   font-size: 0.8em;
   font-style: italic;
+  padding: 1em;
 }
 
 .city-overview a{
@@ -46,6 +49,12 @@ overflow: scroll;
   font-style: normal;
   font-size: 1.15em;
   cursor:pointer;
+  padding: 0.5em 1em 0.5em 1em;
+
+}
+
+.city-overview a:hover{
+  color: #F5EFED;
 }
 
 .city-detail {
@@ -55,11 +64,16 @@ overflow: scroll;
 }
 
 .city-info {
-  border: 1px solid #D0CDD7;
+
+  border-radius: 10px;
   width: 65vw;
   text-align: center;
 }
 
 #mapid {
-  height: 375px;
+  height: 350px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 3%;
 }
