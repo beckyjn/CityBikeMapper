@@ -1,6 +1,7 @@
 const HireScheme = require('./models/hire_schemes.js');
 const CountrySelectView = require('./views/country_select_view.js');
 const CityListView = require('./views/cities_list_view.js');
+const CityDetailedView = require('./views/city_detailed_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');

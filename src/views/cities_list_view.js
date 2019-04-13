@@ -16,15 +16,21 @@ CityListView.prototype.bindEvents = function () {
 CityListView.prototype.publishCityInfo = function () {
   this.container.innerHTML= "";
 
+  const sortedCities = this.selectedCities.sort(function(a, b) {
+    const textA = a.location.city.toUpperCase();
+    const textB = b.location.city.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+
   let cityName = "";
   let bikeHireLocalName = "";
 
-  const eachCity = this.selectedCities.forEach((city) => {
+  const eachCity = sortedCities.forEach((city) => {
     listContainer = document.createElement('ul');
+    listContainer.classList.add('city-overview')
     this.container.appendChild(listContainer);
 
     listName = document.createElement('li');
-    listName.textContent = `City Name: ${city.location.city}`;
+    listName.innerHTML = `<a> City Name: ${city.location.city} </a>`;
     listContainer.appendChild(listName);
 
     listHireCompany = document.createElement('li');

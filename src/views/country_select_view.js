@@ -58,7 +58,12 @@ CountrySelectView.prototype.populateCountryNames = function () {
 CountrySelectView.prototype.getCountryCodes = function(){
   const everyCountryCode = [];
   let countryCodes = this.allNetworkData.forEach((network) => {
+    // fixes error with countrycode for Edinburgh
+    if (network["location"]["country"] === "UK"){
+      network["location"]["country"] = "GB";
+    }
     everyCountryCode.push(network["location"]["country"]);
+
   });
   countryCodes = everyCountryCode.filter((countryCode, index, array) => {
       return array.indexOf(countryCode) === index;

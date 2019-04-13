@@ -33,6 +33,7 @@ HireSchemes.prototype.bindEvents = function (){
   PubSub.subscribe('SelectView:country-selected', (evt) => {
    countryData = evt.detail;
     if (countryData !== []){
+      console.log(countryData);
       PubSub.publish('HireSchemes:selected-hire-schemes-ready', countryData);
     };
   });
