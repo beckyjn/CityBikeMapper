@@ -49,4 +49,6 @@ CityListView.prototype.citySelectedHandler = function () {
 };
 
 
+
+
 module.exports = CityListView;

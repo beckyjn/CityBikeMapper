@@ -1,29 +1,45 @@
 body {
-  background-color: #F5EFED;
-  color: #0F0A0A;
-  font-family: Helvetica, sans-serif;
-  background-image: url(https://www.transparenttextures.com/patterns/gplay.png);
+  background-color: #f9f7fb;
+  color: #484D6D;
+  font-family: 'PT Sans', sans-serif;
+  background-image: url('../images/bicycle.png');
 }
+
+h1 {
+  font-family: 'Concert One', cursive;
+  font-size: 3em;
+  color: #EE6352;
+}
+
+h2 {
+  font-family: 'Concert One', cursive;
+  font-size: 2em;
+  color: #EE6352;
+}
+
 
 .data-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 4fr;
   justify-items: center;
-  height: 85vh;
+  height: 95vh;
 }
 
 .dropdown {
-  grid-column: 1;
+  grid-row: 1;
+  grid-column: 2;
+  align-self: center;
 }
 
 .cities-list {
 overflow: scroll;
 grid-column: 1;
+grid-row: 2;
 }
 
 .city-overview {
-  background-color: #BDBF09;
+  background-color: #57A773;
   border-radius: 10px;
   list-style: none;
   padding: 1em;
@@ -33,13 +49,17 @@ grid-column: 1;
 }
 
 .city-overview:hover{
-  border-radius: 10px;
-  list-style: none;
-  padding: 1em;
-  min-width: 100px;
-  width: 20vw;
-  text-align: center;
-  background-color: #2292A4;
+  background-color: #08B2E3;
+  transition: 0.25s;
+}
+
+.city-overview:active{
+  background-color: #0792BA;
+  transition: 0.25s;
+}
+
+.city-overview:focus{
+  background-color: #08B2E3;
   transition: 0.25s;
 }
 
@@ -51,11 +71,11 @@ grid-column: 1;
 
 .city-overview a{
   color: #416165;
-  font-weight: bold;
   font-style: normal;
-  font-size: 1.15em;
+  font-family: 'Concert One', cursive;
+  font-size: 1.75em;
   cursor:pointer;
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.2em 0.5em 0.2em 0.5em;
 
 }
 
@@ -65,9 +85,8 @@ grid-column: 1;
 
 .city-detail {
   grid-column: 2;
-  grid-row: 1 / span 2;
-  justify-items: center;
-  padding-top: 2em;
+  grid-row: 2;
+  align-items: center;
   text-align: center;
   width: 65vw;
   padding-left: 0.5em;
@@ -89,6 +108,12 @@ grid-column: 1;
 }
 
 select {
-  font-size: 0.9em;
+  font-size: 1.05em;
   width: 25vw;
+  padding: 0.1em;
+}
+
+label {
+  font-family: 'Concert One', cursive;
+    font-size: 1.2em;
 }

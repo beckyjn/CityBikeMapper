@@ -6,7 +6,7 @@ const CityDetailedView = require('./views/city_detailed_view.js');
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
 
-  const countrySelectViewContainer = document.querySelector('.country-dropdown');
+  const countrySelectViewContainer = document.querySelector('#country-dropdown');
   const countrySelectView = new CountrySelectView(countrySelectViewContainer);
   countrySelectView.bindEvents();
 

@@ -12,20 +12,22 @@
   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
   crossorigin=""></script>
+<link href="https://fonts.googleapis.com/css?family=Concert+One|PT+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>City Bike Hire Schemes of the World</h1>
-
     <div class="data-container">
-    <div class="dropdown"><p>Choose a country</p>
-    <select class="country-dropdown">
-      <option selected default></option>
+    <h1>City Bike Mappr</h1>
+
+    <div class="dropdown">
+    <label for="country-dropdown">Choose a country: </label>
+    <select id="country-dropdown">
+      <option selected default>--please choose an option--</option>
     </select>
   </div>
     <div class="cities-list"></div>
     <div class="city-detail">
-    <h3>Welcome to the city bike hire finder</h3>
-    <p>Do you travel a lot? Maybe you like cycling, but not enough to lug a bike around with you on your voyages? Or perhaps you like to commute by bike when you are away for travel, to keep that carbon footprint down? Well this site makes it easy for you to find out what city bike hire schemes operate in cities around the world. Not only that, we show you the exact location and bike availability of all the docking stations in that area. </p>
+    <h2>Welcome to the city bike mappr!</h2>
+    <p>This site makes it easy for you to find bike hire schemes for cities around the world. Not only that, we show you the exact location and bike availability of all the docking stations in that area! </p><p>Get started by selecting a country from the drop-down menu above.</p>
   </div>
     </div>
   </body>

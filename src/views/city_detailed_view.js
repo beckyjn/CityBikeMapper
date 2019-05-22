@@ -19,7 +19,7 @@ CityDetailedView.prototype.displayInfo = function (container) {
   detailContainer = document.createElement('div');
   detailContainer.classList.add('city-info')
 
-  detailCityName = document.createElement('h3');
+  detailCityName = document.createElement('h2');
   detailCityName.textContent = `${this.allCityData.location.city}`;
 
   detailNumberOfStations = document.createElement('p');
@@ -58,7 +58,16 @@ const allStations = this.allCityData.stations
     stationFreeBikes = station.free_bikes;
     stationEmptySlots = station.empty_slots;
 
-    var marker = L.marker([stationLat, stationLong]).addTo(mymap);
+    var myIcon = L.icon({
+    iconUrl: '../../images/map-marker.png',
+
+    iconSize:     [64, 64], // size of the icon
+    iconAnchor:   [32, 63], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-1, -50] // point from which the popup should open relative to the iconAnchor
+});
+
+
+    var marker = L.marker([stationLat, stationLong], {icon: myIcon}).addTo(mymap);
     marker.bindPopup(`<b>${stationName}</b><br>${stationFreeBikes} bikes available.<br>${stationEmptySlots} empty slots.`).openPopup();
 });
 };

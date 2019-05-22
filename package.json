@@ -1,16 +1,21 @@
 {
-  "name": "weekend_homework",
+  "name": "city_bike_mapper",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -w"
+    "build": "webpack",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
+  } ,
+  "engines": {
+    "node": "11.x"
   }
+
 }
