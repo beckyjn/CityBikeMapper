@@ -3,11 +3,11 @@
 Project created as weekend homework for CodeClan, using JS to pull data from an API and display the data.
 
 ## APIs used
-[http://api.citybik.es/] City Bikes API
-[https://restcountries.eu/] REST countries
+* [City Bikes API](http://api.citybik.es/) 
+* [REST countries](https://restcountries.eu/)
 
 ## Libraries used
-[https://leafletjs.com/] Leaflet
+* [Leaflet](https://leafletjs.com/)
 
 ### Brief
 
