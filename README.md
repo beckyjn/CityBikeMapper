@@ -1,0 +1,30 @@
+# CityBikeMapper
+
+Project created as weekend homework for CodeClan, using JS to pull data from an API and display the data.
+
+## APIs used
+[http://api.citybik.es/] City Bikes API
+[https://restcountries.eu/] REST countries
+
+## Libraries used
+[https://leafletjs.com/] Leaflet
+
+### Brief
+
+Your task is to create an application that makes a request to an API and displays the data.
+
+#### MVP
+
+- The application should display data from an API request.
+- The application should have a clear separation of concerns using a model and views.
+
+#### Extensions
+
+- Take input from the user to update the page. You could update the page by filtering or manipulating the data on user interaction, or you might make further API requests to load more data that is then displayed.
+
+#### Advanced Extensions
+
+Looking into a library to visual the data.
+
+- [Leaflet](https://leafletjs.com/) is an open-source library for rendering maps
+- [HighCharts](https://www.highcharts.com/) is an open-source library for rendering charts
