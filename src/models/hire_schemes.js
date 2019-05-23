@@ -7,7 +7,7 @@ const HireSchemes = function () {
 };
 
 HireSchemes.prototype.getData = function () {
-  const bikesUrl = `http://api.citybik.es/v2/networks`
+  const bikesUrl = `https://api.citybik.es/v2/networks`
   const bikeRequestHelper = new RequestHelper(bikesUrl);
   bikeRequestHelper.get()
     .then((stuff)=> {
@@ -47,7 +47,7 @@ HireSchemes.prototype.bindEvents = function (){
     const selectedCityName = evt.detail[0];
     const selectedScheme = evt.detail[1];
     const selectedCityDetails = this.findHref(selectedCityName, selectedScheme)
-    cityDetailUrl = `http://api.citybik.es${selectedCityDetails}`
+    cityDetailUrl = `https://api.citybik.es${selectedCityDetails}`
     if (cityDetailUrl !== ""){
       const cityRequestHelper = new RequestHelper(cityDetailUrl);
       cityRequestHelper.get()
