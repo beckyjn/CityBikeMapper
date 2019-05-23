@@ -1,5 +1,6 @@
 node_modules
 bundle.js
+access_token.js
 npm-debug.log
 .DS_Store
 /*.env
