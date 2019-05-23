@@ -2,6 +2,8 @@
 
 [View on Heroku!](https://citybikemappr.herokuapp.com/)
 
+[View on Heroku](https://citybikemappr.herokuapp.com/)
+
 Project created as weekend homework for CodeClan, using JS to pull data from an API and display the data.
 
 This application provides the user with a dropdown list of countries that have city bike hire schemes which appear in the api.
