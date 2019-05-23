@@ -1,14 +1,18 @@
-# CityBikeMapper
+# CityBikeMappr
+
+[View on Heroku!](https://citybikemappr.herokuapp.com/)
 
 Project created as weekend homework for CodeClan, using JS to pull data from an API and display the data.
 
 This application provides the user with a dropdown list of countries that have city bike hire schemes which appear in the api.
-The user selects a country, and is presented with a list of cities in that country which have bike hire schemes, and the name of the service provider. 
-Clicking on the city name produces a map showing the location of each bike hire station in that city. 
-Clicking a station shows details of bikes and free slots available at that location. 
+The user selects a country, and is presented with a list of cities in that country which have bike hire schemes, and the name of the service provider.
+Clicking on the city name produces a map showing the location of each bike hire station in that city.
+Clicking a station shows details of bikes and free slots available at that location.
+
+Later edits to styling and to get app ready to run on heroku.
 
 ## APIs used
-* [City Bikes API](http://api.citybik.es/) 
+* [City Bikes API](http://api.citybik.es/)
 * [REST countries](https://restcountries.eu/)
 
 ## Libraries used
